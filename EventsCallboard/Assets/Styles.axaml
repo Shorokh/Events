@@ -1,0 +1,24 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+	<Style Selector="ItemsControl TextBlock">
+		<Setter Property="TextWrapping" Value="Wrap"/>
+		<Setter Property="MaxWidth" Value="256"/>
+		<Setter Property="TextTrimming" Value="WordEllipsis"/>
+		<Setter Property="Foreground" Value="#48F"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+	</Style>
+	<Style Selector="Border.b1">
+		<Setter Property="BorderBrush" Value="LightGray"/>
+		<Setter Property="BorderThickness" Value="2"/>
+		<Setter Property="CornerRadius" Value="8"/>
+		<Setter Property="Padding" Value="8"/>
+	</Style>
+	<Style Selector="Border.b2">
+		<Setter Property="Margin" Value="0 8 0 0"/>
+	</Style>
+</Styles>

@@ -1,0 +1,70 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:EventsCallboard.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:model="clr-namespace:EventsCallboard.Models"
+        mc:Ignorable="d" d:DesignWidth="1220" d:DesignHeight="450"
+		Width="1220" Height="450"
+        x:Class="EventsCallboard.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="EventsCallboard"
+		Background="#FBFAFA">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+	<Window.Styles>
+		<StyleInclude Source="/Assets/Styles.axaml"/>
+	</Window.Styles>
+	<ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<StackPanel>
+			<TabControl Items="{Binding EventTags}">
+				<TabControl.ItemTemplate>
+					<DataTemplate>
+						<Grid ColumnDefinitions="*, *">
+							<Image Height="24" Width="24" Source="{Binding CategoryImage}"/>
+							<TextBlock Grid.Column="1" Text="{Binding Header}" />
+						</Grid>
+					</DataTemplate>
+				</TabControl.ItemTemplate>
+				<TabControl.ContentTemplate>
+					<DataTemplate>
+						<ItemsControl Items="{Binding Events}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate DataType="{x:Type model:CityEvent}">
+									<Grid Margin="10" RowDefinitions="*,*">
+										<Panel>
+											<Border Classes="b1">
+												<StackPanel Background="White" Margin="0">
+													<Viewbox Stretch="Fill" Height="256" Width="256" >
+														<Image Source="{Binding Image}"/>
+													</Viewbox>
+													<TextBlock Text="{Binding Header}" FontWeight="Bold" FontSize="20"/>
+													<Border Classes="b2" IsVisible="{Binding Date, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+														<TextBlock Text="{Binding Date}" FontWeight="Bold"/>
+													</Border>
+													<Border Classes="b2" IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+														<TextBlock Text="{Binding Description}"/>
+													</Border>
+													<Border Classes="b2" IsVisible="{Binding Price, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+														<TextBlock Text="{Binding Price}" FontWeight="Bold"/>
+													</Border>
+												</StackPanel>		
+											</Border>
+										</Panel>
+									</Grid>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<WrapPanel/>
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+						</ItemsControl>
+					</DataTemplate>
+				</TabControl.ContentTemplate>
+			</TabControl>
+		</StackPanel>
+	</ScrollViewer>
+</Window>
